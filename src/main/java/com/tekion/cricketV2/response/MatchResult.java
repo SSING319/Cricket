@@ -1,4 +1,4 @@
-package com.tekion.cricketV2.model;
+package com.tekion.cricketV2.response;
 
 import com.tekion.cricketV2.teams.Team_A;
 import com.tekion.cricketV2.teams.Team_B;
