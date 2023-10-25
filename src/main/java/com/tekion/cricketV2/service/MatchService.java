@@ -1,13 +1,19 @@
 package com.tekion.cricketV2.service;
 
+import com.tekion.cricketV2.dao.All_Players_Stats;
 import com.tekion.cricketV2.dto.Player;
 import com.tekion.cricketV2.teams.Team;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class MatchService {
+
+
+
+
     public Team playMatch(Map<String, String> team_line_up, List<String> teamList, Team team, String team_name){
 
         // this is for storing records/stats of each player in the team
@@ -40,7 +46,7 @@ public class MatchService {
                 Random random = new Random();
                 int action = random.nextInt(0, 8);
                 if(action == 7){
-                    playerDataList.add(new Player(playerName, playerType, playerRuns));
+                    playerDataList.add(new Player(playerName, playerType, team_name, playerRuns));
                     wicketsDown++;
                     playerOrder++;
                     if(playerOrder <= 9){
@@ -61,7 +67,7 @@ public class MatchService {
         if(balls==6){overs++; balls=0;}
 
         //for adding the runs of last playing batsmen if the team is not all out
-        if(!flag) playerDataList.add(new Player(playerName, playerType, playerRuns));
+        if(!flag) playerDataList.add(new Player(playerName, playerType, team_name, playerRuns));
 
         String total_overs = overs+"."+balls;
 
@@ -71,6 +77,7 @@ public class MatchService {
         team.setRuns(runsMade);
         team.setWickets(wicketsDown);
         team.setScoreCard(playerDataList);
+
 
 
         return team;

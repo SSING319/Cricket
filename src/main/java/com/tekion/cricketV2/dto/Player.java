@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class Player {
     String playerName;
     String playerType;
+    String player_team_name;
     int runsScored;
 }
