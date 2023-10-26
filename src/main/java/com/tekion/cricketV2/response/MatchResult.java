@@ -1,7 +1,7 @@
 package com.tekion.cricketV2.response;
 
-import com.tekion.cricketV2.teams.Team_A;
-import com.tekion.cricketV2.teams.Team_B;
+import com.tekion.cricketV2.match_teams.Team_A;
+import com.tekion.cricketV2.match_teams.Team_B;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

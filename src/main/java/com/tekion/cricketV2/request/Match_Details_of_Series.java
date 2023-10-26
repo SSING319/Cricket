@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Input_Request {
-    Input_Team_A input_team_a;
-    Input_Team_B input_team_b;
-    int match_overs;
+public class Match_Details_of_Series {
+    String series_id;
+    int match_number;
 }

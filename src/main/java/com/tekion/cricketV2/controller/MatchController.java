@@ -10,21 +10,21 @@ import com.tekion.cricketV2.request.Input_Team_A;
 import com.tekion.cricketV2.request.Input_Team_B;
 import com.tekion.cricketV2.response.MatchResult;
 import com.tekion.cricketV2.service.MatchService;
-import com.tekion.cricketV2.teams.Team_A;
-import com.tekion.cricketV2.teams.Team_B;
+import com.tekion.cricketV2.match_teams.Team_A;
+import com.tekion.cricketV2.match_teams.Team_B;
+import com.tekion.cricketV2.util.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v3")
+@RequestMapping("api/v4/match")
 public class MatchController {
+    @Autowired
+    Helper helper;
     @Autowired
     private final MatchService service;
     @Autowired
@@ -71,8 +71,8 @@ public class MatchController {
         List<String> team_line_up_b = team_b.teamList(team_b.getBatsmen(), team_b.getBowlers());
 
         //match started
-        Team_A team_result_a = (Team_A) service.playMatch(team_map_a, team_line_up_a, response_team_a, first_batting);
-        Team_B team_result_b = (Team_B) service.playMatch(team_map_b, team_line_up_b, response_team_b, second_batting);
+        Team_A team_result_a = (Team_A) service.playMatch(team_map_a, team_line_up_a, response_team_a, first_batting, inputRequest.getMatch_overs());
+        Team_B team_result_b = (Team_B) service.playMatch(team_map_b, team_line_up_b, response_team_b, second_batting, inputRequest.getMatch_overs());
 
         //publishing response
         matchResult.setTeam_a(team_result_a);
@@ -97,7 +97,10 @@ public class MatchController {
         resultRepo.save(scoreCard);
 
         return matchResult;
-
+    }
+    @GetMapping("/playerStats/{player_name}")
+    public Player getPlayerStats(@PathVariable String player_name){
+        return helper.findPlayerStats(player_name);
     }
 }
 

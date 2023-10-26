@@ -1,4 +1,4 @@
-package com.tekion.cricketV2.teams;
+package com.tekion.cricketV2.match_teams;
 
 import org.springframework.stereotype.Component;
 

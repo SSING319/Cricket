@@ -1,4 +1,4 @@
-package com.tekion.cricketV2.teams;
+package com.tekion.cricketV2.match_teams;
 
 import com.tekion.cricketV2.dto.Player;
 import lombok.AllArgsConstructor;
